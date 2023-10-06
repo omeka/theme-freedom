@@ -1,7 +1,7 @@
 # Freedom: An Omeka Classic Theme
 
 This is an Omeka Classic theme that offers some custom options and a clean design.
-![Freedom Theme](https://github.com/omeka/theme-freedom/blob/master/theme.jpg?raw=true)
+![Freedom Theme](https://github.com/omeka/theme-freedom/blob/main/theme.jpg?raw=true)
 
 ## Installation
 
