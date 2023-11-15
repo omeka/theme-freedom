@@ -72,7 +72,6 @@
     <!-- JavaScripts -->
     <?php
     queue_js_file(array('globals', 'navigation', 'script'));
-    queue_js_url('//kit.fontawesome.com/22a8f33cc1.js');
 
     echo head_js();
     ?>
