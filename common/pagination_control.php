@@ -16,9 +16,9 @@
                 <!-- Prev Button -->
                 <?php if ($this->current != 1): ?>
                     <?php $getParams['page'] = $previous; ?>
-                    <a rel="prev" href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>" aria-label="<?php echo __('Previous Page'); ?>" title="<?php echo __('Previous Page'); ?>" class="previous button fas fa-angle-left"></a>
+                    <a rel="prev" href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>" aria-label="<?php echo __('Previous Page'); ?>" title="<?php echo __('Previous Page'); ?>" class="button prev"></a>
                 <?php else: ?>
-                    <span class="prev fas fa-angle-left button disabled" disabled></span>
+                    <span class="button prev disabled" disabled></span>
                 <?php endif; ?>
 
                 <!-- Pager -->
@@ -34,9 +34,9 @@
                 <!-- Next Button -->
                 <?php if ($this->current < $this->pageCount) : ?>
                     <?php $getParams['page'] = $next; ?>
-                    <a rel="next" href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>" aria-label="<?php echo __('Next Page'); ?>" title="<?php echo __('Next Page'); ?>" class="next button fas fa-angle-right"></a>
+                    <a rel="next" href="<?php echo html_escape($this->url(array(), null, $getParams)); ?>" aria-label="<?php echo __('Next Page'); ?>" title="<?php echo __('Next Page'); ?>" class="button next"></a>
                 <?php else: ?>
-                    <span class="next fas fa-angle-right button disabled" disabled></span>
+                    <span class="button next disabled" disabled></span>
                 <?php endif; ?>
             </div>
 

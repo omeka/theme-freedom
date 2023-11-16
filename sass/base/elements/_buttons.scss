@@ -32,7 +32,7 @@ input[type="submit"] {
         }
 
         &:disabled,
-        &[disabled]
+        &[disabled],
         &.disabled {
             color: $color__disabled;
         }
@@ -41,6 +41,7 @@ input[type="submit"] {
 
 button.add-value,
 button.remove-value {
+    @include font-awesome;
     background-color: $color__white;
     border: 1px solid $color__hr;
     border-radius: 50%;
@@ -60,6 +61,26 @@ button.remove-value {
     }
 }
 
+button.add-value::after {
+    content: "\f067";
+}
+button.remove-value::after {
+    content: "\f2ed";
+}
+
 .button {
     cursor: pointer;
+
+    &.prev,
+    &.next {
+        @include font-awesome;
+    }
+
+    &.prev::after {
+        content: "\f104";
+    }
+
+    &.next::after {
+        content: "\f105";
+    }
 }

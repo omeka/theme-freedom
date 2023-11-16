@@ -117,13 +117,11 @@ $formAttributes['method'] = 'GET';
                             );
                             ?>
                         </label>
-                        <!-- <button type="button" class="fa-solid fa-trash-can remove-value remove_search button" disabled="disabled" style="display: none;" aria-label="<?php echo __('Remove value'); ?>" title="<?php echo __('Remove value'); ?>"></button> -->
-                        <button type="button" class="remove_search remove-value fas fa-trash" disabled="disabled" style="display: none;" aria-labelledby="search-narrow-by-fields-label search-row-<?php echo $i; ?> search-narrow-by-fields-remove-field" title="<?php echo __('Remove field'); ?>"></button>
+                        <button type="button" class="remove_search remove-value" disabled="disabled" style="display: none;" aria-labelledby="search-narrow-by-fields-label search-row-<?php echo $i; ?> search-narrow-by-fields-remove-field" title="<?php echo __('Remove field'); ?>"></button>
                     </div>
                 <?php endforeach; ?>
             </div>
-            <!-- <button type="button" class="add_search"><?php //echo __('Add a Field'); ?></button> -->
-            <button type="button" class="add_search add-value button fas fa-plus" aria-label="<?php echo __('Add a Field'); ?>" title="<?php echo __('Add a Field'); ?>"></button>
+            <button type="button" class="add_search add-value button" aria-label="<?php echo __('Add a Field'); ?>" title="<?php echo __('Add a Field'); ?>"></button>
         </div>
 
         <div id="search-by-range" class="field">
