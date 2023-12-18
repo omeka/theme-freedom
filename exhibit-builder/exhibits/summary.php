@@ -39,6 +39,14 @@ echo head(array('title' => $exhibitTitle, 'bodyclass'=>'exhibits summary'));
                     <?php echo $pageTree; ?>
                 </nav>
             <?php endif; ?>
+
+            <!-- The following prints a list of all tags associated with the item -->
+            <?php if (metadata('exhibit', 'has tags')) : ?>
+                <div id="record-tags" class="element anchor">
+                    <h2><?php echo __('Tags'); ?></h2>
+                    <div class="element-text"><?php echo freedom_record_tags($exhibit, 'tags', '', false); ?></div>
+                </div>
+            <?php endif;?>
         </div>
     </div>
 </div>

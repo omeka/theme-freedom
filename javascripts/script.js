@@ -18,6 +18,7 @@ const freedomScripts = () => {
     function onResize() {
         getUserBarHeight();
         refreshBodyPaddingTop();
+        adjustMenuItemsWidth();
     }
 
     window.addEventListener('resize', function() {
@@ -33,6 +34,29 @@ const freedomScripts = () => {
         if (userBar) {
             userBarHeight = userBar.offsetHeight;
         }
+    }
+
+    function adjustMenuItemsWidth() {
+        const mainNavigation = document.querySelector('.main-navigation');
+        const mainNavigationLinks = mainNavigation.querySelectorAll('.navigation > li > a');
+        let linkMaxHeight = 0;
+
+        mainNavigationLinks.forEach((mainNavigationLink) => {
+            mainNavigationLink.style.width = 'auto';
+            if (mainNavigationLink.offsetHeight > linkMaxHeight) {
+                linkMaxHeight = mainNavigationLink.offsetHeight;
+            }
+        });
+
+        if (linkMaxHeight > 40) {
+            mainNavigationLinks.forEach((mainNavigationLink) => {
+                mainNavigationLink.style.width = 'min-content';
+            });
+        } /*else {
+            mainNavigationLinks.forEach((mainNavigationLink) => {
+                mainNavigationLink.style.width = 'auto';
+            });
+        }*/
     }
 
     // Scrolling Events

@@ -109,7 +109,7 @@ foreach ( $socialNetworks as $social_network ) {
                     <?php if ($footer_copyright = get_theme_option('footer_copyright') ) : ?>
                         <?php echo $footer_copyright; ?>
                     <?php else: ?>
-                        <?php echo $this->translate('Powered by Omeka S'); ?>
+                        <?php echo $this->translate('Powered by Omeka'); ?>
                     <?php endif; ?>
                 </div>
             </div>

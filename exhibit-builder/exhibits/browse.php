@@ -7,6 +7,7 @@ $layoutSetting = get_theme_option('browse_layout') ?? 'grid';
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (strpos($layoutSetting, 'grid') !== false) ? true : false;
+$excludeTag = 'record_type';
 
 echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
 ?>
@@ -51,7 +52,7 @@ echo head(array('title' => $title, 'bodyclass' => 'exhibits browse'));
     <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
         <?php
         foreach (loop('exhibit') as $exhibit) {
-            echo $this->partial('exhibit-builder/exhibits/single.php', array('exhibit' => $exhibit, 'isGrid' => $isGrid));
+            echo $this->partial('exhibit-builder/exhibits/single.php', array('exhibit' => $exhibit, 'isGrid' => $isGrid, 'excludeTag' => $excludeTag));
         }
         ?>
     </ul>

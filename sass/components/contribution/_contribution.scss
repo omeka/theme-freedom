@@ -1,6 +1,10 @@
 body.contribution {
     #contribution-type-form {
         margin-top: 2rem;
+
+        .field {
+            margin-bottom: 1rem;
+        }
     }
 
     #contribution-confirm-submit {

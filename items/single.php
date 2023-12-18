@@ -4,9 +4,9 @@
  */
 
 $isGrid = $isGrid ?? false;
-$thumbnailSize = $thumbnailSize ?? 'square_thumbnail';
+$excludeTag = $excludeTag ?? '';
 $primary = $primary ?? false;
-$primaryMedia = item_image($thumbnailSize, array(), 0, $item);
+$primaryMedia = item_image('fullsize', array(), 0, $item);
 $title = metadata($item, 'rich_title', array('no_escape' => true));
 $description = metadata($item, array('Dublin Core', 'Description'));
 $truncateDesc = get_theme_option('truncate_body_property') ?? 'ellipsis';
@@ -34,7 +34,7 @@ if ($primary) {
 
     <!-- Content -->
     <div class="resource__content">
-        <?php echo freedom_record_tags($item); ?>
+        <?php echo freedom_record_tags($item, '', $excludeTag); ?>
         <!-- Metadata -->
         <div class="resource__meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
             <h2 class="resource__heading"><?php echo link_to($item, 'show', $title); ?></h2>

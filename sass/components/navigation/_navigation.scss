@@ -87,6 +87,7 @@
         }
     
         > li { //main menu items
+            display: flex;
             cursor: pointer;
 
             &:hover,
@@ -124,14 +125,16 @@
             }
 
             > a { //main menu items links
+                display: flex;
+                align-items: center;
                 color: $color__buttons;
-                display: block;
                 text-decoration: none;
                 text-transform: uppercase;
                 padding-top: 0.3rem;
                 padding-bottom: 0.3rem;
                 margin: 30px 15px;
                 position: relative;
+                text-align: center;
 
                 .main-header--center & {
                     margin: 20px 15px;

@@ -8,8 +8,7 @@ $recordType = $searchText['record_type'];
 set_current_record($recordType, $record);
 
 $isGrid = $isGrid ?? false;
-$thumbnailSize = $thumbnailSize ?? 'square_thumbnail';
-$recordImage = record_image($recordType);
+$recordImage = record_image($recordType, 'square_thumbnail');
 $title = $searchText['title'] ? $searchText['title'] : '[Unknown]';
 $decoration = get_theme_option('image_decoration');
 $decorationClass = '';

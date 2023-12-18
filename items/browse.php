@@ -7,6 +7,7 @@ $layoutSetting = get_theme_option('browse_layout') ?? 'grid';
 $gridState = ($layoutSetting == 'togglegrid') ? 'disabled' : '';
 $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (strpos($layoutSetting, 'grid') !== false) ? true : false;
+$excludeTag = 'record_type';
 
 echo head(array('title' => $pageTitle, 'bodyclass' => 'items browse'));
 ?>
@@ -45,7 +46,7 @@ echo head(array('title' => $pageTitle, 'bodyclass' => 'items browse'));
 <ul class="resources <?php echo ($isGrid) ? 'resource-grid' : 'resource-list'; ?>">
     <?php 
     foreach (loop('items') as $item) {
-        echo $this->partial('items/single.php', array('item' => $item, 'isGrid' => $isGrid));
+        echo $this->partial('items/single.php', array('item' => $item, 'isGrid' => $isGrid, 'excludeTag' => $excludeTag));
     }
     ?>
 </ul>

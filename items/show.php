@@ -35,9 +35,9 @@ echo head(array('title' => $title, 'bodyclass' => 'items show'));
 
             <!-- The following prints a list of all tags associated with the item -->
             <?php if (metadata('item', 'has tags')) : ?>
-            <div id="item-tags" class="element">
+            <div id="record-tags" class="element anchor">
                 <h2><?php echo __('Tags'); ?></h2>
-                <div class="element-text"><?php echo freedom_record_tags($item, 'tags'); ?></div>
+                <div class="element-text"><?php echo freedom_record_tags($item, 'tags', '', false); ?></div>
             </div>
             <?php endif;?>
 

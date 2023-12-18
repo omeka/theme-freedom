@@ -46,12 +46,14 @@ function freedom_asset_uri($asset_name)
 /**
  * Returns a set of tags in HTML format.
  *
- * @param object $record   An instance of Omeka_Record_AbstractRecord.
- * @param string $tag_type The type of tags to render (record_type, item_type or tags). Empty string will render all.
+ * @param object $record     An instance of Omeka_Record_AbstractRecord.
+ * @param string $tag_type   The type of tags to render (record_type, item_type or tags). Empty string will render all.
+ * @param string $exclude    The type of tags to exclude (record_type, item_type or tags).
+ * @param bool   $limit_tags Limit or not the number of tags to render, based on the theme settings.
  *
  * @return string
  */
-function freedom_record_tags($record, $tag_type = '')
+function freedom_record_tags($record, $tag_type = '', $exclude = '', $limit_tags = true)
 {
     if (!$record || !$record instanceof Omeka_Record_AbstractRecord) {
         return '';
@@ -62,18 +64,20 @@ function freedom_record_tags($record, $tag_type = '')
 
     $tags_html = '';
 
-    if (is_array($theme_record_tags) && array_intersect($record_tags_options, $theme_record_tags)) {
+    if (!is_array($theme_record_tags) || !array_intersect($record_tags_options, $theme_record_tags)) {
+        return '';
+    }
 
-        $record_type = get_class($record);
+    $record_type = get_class($record);
 
-        if (!$record_type) {
-            return;
-        }
+    if (!$record_type) {
+        return '';
+    }
 
-        $record_type_id = '';
-        $record_type_url = '';
+    $record_type_id = '';
+    $record_type_url = '';
 
-        switch ($record_type) {
+    switch ($record_type) {
         case 'Item':
             $record_type_id = 0;
             $record_type_url = 'items/browse';
@@ -92,50 +96,83 @@ function freedom_record_tags($record, $tag_type = '')
             $record_type_id = 9;
             $record_type_url = 'exhibits/browse';
             break;
-            
+
         default:
             $record_type_id = 10;
             break;
+    }
+
+    $tags_html .= '<div class="record-tags">';
+
+    // Record Type Tags ('Item', 'Exhibit', 'Collection').
+
+    if ($exclude !== 'record_type'
+        && in_array('record_type', $theme_record_tags)
+        && ($tag_type === '' || $tag_type === 'record_type')) {
+
+        $tag_color = freedom_get_unique_color_from_id($record_type_id, 'pastel');
+
+        if ($record_type_url) {
+            $tags_html .= '<a href="' . html_escape(url($record_type_url)) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $record_type . '</a>';
+        } else {
+            $tags_html .= '<div class="record-tag" style="background-color: ' . $tag_color . ';">' . $record_type . '</div>';
+        }
+    }
+
+    // Item Type Tags.
+
+    if ($exclude !== 'item_type'
+        && in_array('item_type', $theme_record_tags)
+        && 'Item' === $record_type && $record->item_type_id
+        && ($tag_type === '' || $tag_type === 'item_type')) {
+
+        $typeName = metadata($record, 'Item Type Name');
+        $tag_color = freedom_get_unique_color_from_id((int) $record->item_type_id + 100, 'pastel'); // Offset 100 to get more unique colors.
+        $tags_html .= '<a href="' . html_escape(url('items/browse', array('type' => $record->item_type_id))) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $typeName . '</a>';
+    }
+
+    // Record Tags.
+
+    if ($exclude !== 'record_tag'
+        && in_array('record_tag', $theme_record_tags)
+        && $tag_type === '' || $tag_type === 'tags') {
+
+        $tags = $record->Tags;
+
+        if (!is_array($tags) || !count($tags)) {
+            return $tags_html;
         }
 
-        $tags_html .= '<div class="record-tags">';
+        $hidden_tags = 0;
 
-        // Record Type Tags ('Item', 'Exhibit', 'Collection').
+        if ($limit_tags) {
+            $tag_limit = get_theme_option('record_tags_count') ?? 2;
+            $tag_limit = is_numeric($tag_limit) ? intval($tag_limit) : 0;
+            $total_tags = count($tags);
 
-        if (in_array('record_type', $record_tags_options) && ($tag_type === '' || $tag_type === 'record_type')) {
+            if ($tag_limit > 0) {
+                $tags = array_slice($tags, 0, $tag_limit);
 
-            $tag_color = freedom_get_unique_color_from_id($record_type_id, 'pastel');
-            
-            if ($record_type_url) {
-                $tags_html .= '<a href="' . html_escape(url($record_type_url)) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $record_type . '</a>';
-            } else {
-                $tags_html .= '<div class="record-tag" style="background-color: ' . $tag_color . ';">' . $record_type . '</div>';
-            }
-        }
-
-        // Item Type Tags.
-
-        if ('Item' === $record_type && $record->item_type_id && ($tag_type === '' || $tag_type === 'item_type')) {
-            $typeName = metadata($record, 'Item Type Name');
-            $tag_color = freedom_get_unique_color_from_id((int) $record->item_type_id + 100, 'pastel'); // Offset 100 to get more unique colors.
-            $tags_html .= '<a href="' . html_escape(url('items/browse', array('type' => $record->item_type_id))) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $typeName . '</a>';
-        }
-
-        // Record Tags.
-
-        if ($tag_type === '' || $tag_type === 'tags') {
-            $tags = $record->Tags;
-
-            if ($tags) {
-                foreach ($tags as $tag) {
-                    $tag_color = freedom_get_unique_color_from_id((int) $tag->id + 200, 'pastel'); // Offset 200 to get more unique colors.
-                    $tags_html .= '<a href="' . html_escape(url($record_type_url, array('tags' => $tag->name))) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $tag->name . '</a>';
+                if ($total_tags > $tag_limit) {
+                    $hidden_tags = $total_tags - $tag_limit;
                 }
             }
         }
 
-        $tags_html .= '</div>';
+
+        foreach ($tags as $tag) {
+            $tag_color = freedom_get_unique_color_from_id((int) $tag->id + 200, 'pastel'); // Offset 200 to get more unique colors.
+            $tags_html .= '<a href="' . html_escape(url($record_type_url, array('tags' => $tag->name))) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $tag->name . '</a>';
+        }
+
+        if ($hidden_tags) {
+            $hidden_tags_string = '...' . $hidden_tags . ' more';
+            $tags_url = record_url($record, 'show', false);
+            $tags_html .= '<a href="' . $tags_url . '#record-tags" class="additional-tags">' . $hidden_tags_string . '</a>';
+        }
     }
+
+    $tags_html .= '</div>';
 
     return $tags_html;
 }
