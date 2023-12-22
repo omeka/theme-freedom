@@ -139,36 +139,34 @@ function freedom_record_tags($record, $tag_type = '', $exclude = '', $limit_tags
 
         $tags = $record->Tags;
 
-        if (!is_array($tags) || !count($tags)) {
-            return $tags_html;
-        }
+        if (is_array($tags) && count($tags)) {
+            $hidden_tags = 0;
 
-        $hidden_tags = 0;
+            if ($limit_tags) {
+                $tag_limit = get_theme_option('record_tags_count') ?? 2;
+                $tag_limit = is_numeric($tag_limit) ? intval($tag_limit) : 0;
+                $total_tags = count($tags);
 
-        if ($limit_tags) {
-            $tag_limit = get_theme_option('record_tags_count') ?? 2;
-            $tag_limit = is_numeric($tag_limit) ? intval($tag_limit) : 0;
-            $total_tags = count($tags);
+                if ($tag_limit > 0) {
+                    $tags = array_slice($tags, 0, $tag_limit);
 
-            if ($tag_limit > 0) {
-                $tags = array_slice($tags, 0, $tag_limit);
-
-                if ($total_tags > $tag_limit) {
-                    $hidden_tags = $total_tags - $tag_limit;
+                    if ($total_tags > $tag_limit) {
+                        $hidden_tags = $total_tags - $tag_limit;
+                    }
                 }
             }
-        }
 
 
-        foreach ($tags as $tag) {
-            $tag_color = freedom_get_unique_color_from_id((int) $tag->id + 200, 'pastel'); // Offset 200 to get more unique colors.
-            $tags_html .= '<a href="' . html_escape(url($record_type_url, array('tags' => $tag->name))) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $tag->name . '</a>';
-        }
+            foreach ($tags as $tag) {
+                $tag_color = freedom_get_unique_color_from_id((int)$tag->id + 200, 'pastel'); // Offset 200 to get more unique colors.
+                $tags_html .= '<a href="' . html_escape(url($record_type_url, array('tags' => $tag->name))) . '" class="record-tag" style="background-color: ' . $tag_color . ';">' . $tag->name . '</a>';
+            }
 
-        if ($hidden_tags) {
-            $hidden_tags_string = '...' . $hidden_tags . ' more';
-            $tags_url = record_url($record, 'show', false);
-            $tags_html .= '<a href="' . $tags_url . '#record-tags" class="additional-tags">' . $hidden_tags_string . '</a>';
+            if ($hidden_tags) {
+                $hidden_tags_string = '...' . $hidden_tags . ' more';
+                $tags_url = record_url($record, 'show', false);
+                $tags_html .= '<a href="' . $tags_url . '#record-tags" class="additional-tags">' . $hidden_tags_string . '</a>';
+            }
         }
     }
 

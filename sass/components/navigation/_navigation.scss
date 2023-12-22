@@ -89,6 +89,7 @@
         > li { //main menu items
             display: flex;
             cursor: pointer;
+            margin-bottom: 0;
 
             &:hover,
             &:focus-within {
@@ -172,6 +173,7 @@
                 padding: 0;
                 width: 100vw;
                 left: 0;
+                top: 100%;
 
                 > li { //mega menu columns
                     max-width: 260px;

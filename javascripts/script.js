@@ -52,11 +52,11 @@ const freedomScripts = () => {
             mainNavigationLinks.forEach((mainNavigationLink) => {
                 mainNavigationLink.style.width = 'min-content';
             });
-        } /*else {
+        } else {
             mainNavigationLinks.forEach((mainNavigationLink) => {
                 mainNavigationLink.style.width = 'auto';
             });
-        }*/
+        }
     }
 
     // Scrolling Events
