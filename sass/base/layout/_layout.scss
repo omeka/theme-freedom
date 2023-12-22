@@ -34,20 +34,6 @@ section {
         padding-top: 3rem;
         padding-bottom: 4rem;
     }
-
-    body.items.advanced-search &,
-    body.register &,
-    body.contribution & {
-        @media (min-width: $lg) {
-            max-width: 1160px;
-            padding: 3rem 10rem 4rem 4rem;
-        }
-
-        @media (min-width: $xl) {
-            max-width: 1160px;
-            padding: 3rem 10rem 4rem;
-        }
-    }
 }
 
 @import "regions";
