@@ -46,7 +46,7 @@ foreach ($featured_record_types as $featured_record_type) {
                 <ul class="featured featured--primary">
                     <?php if (($featured_record_types[0] == 'exhibit') && !plugin_is_active('ExhibitBuilder')) : ?>
                         <?php echo __('Exhibit Builder is not installed.'); ?>
-                    <?php else: ?>
+                    <?php elseif ($record_ids[$featured_record_types[0]]) : ?>
                         <?php echo freedom_featured_record_html($featured_record_types[0], $record_ids[$featured_record_types[0]][0], true); ?>
                         <?php array_shift($record_ids[$featured_record_types[0]]); ?>
                     <?php endif; ?>
@@ -60,7 +60,7 @@ foreach ($featured_record_types as $featured_record_type) {
                     <!-- Featured Record -->
                     <?php if (($featured_record_types[1] == 'exhibit') && !plugin_is_active('ExhibitBuilder')) : ?>
                         <?php echo __('Exhibit Builder is not installed.'); ?>
-                    <?php else: ?>
+                    <?php elseif ($record_ids[$featured_record_types[1]]) : ?>
                         <?php echo freedom_featured_record_html($featured_record_types[1], $record_ids[$featured_record_types[1]][0]); ?>
                         <?php array_shift($record_ids[$featured_record_types[1]]); ?>
                     <?php endif; ?>
@@ -70,7 +70,7 @@ foreach ($featured_record_types as $featured_record_type) {
                     <!-- Featured Record -->
                     <?php if (($featured_record_types[2] == 'exhibit') && !plugin_is_active('ExhibitBuilder')) : ?>
                         <?php echo __('Exhibit Builder is not installed.'); ?>
-                    <?php else: ?>
+                    <?php elseif ($record_ids[$featured_record_types[2]]) : ?>
                         <?php echo freedom_featured_record_html($featured_record_types[2], $record_ids[$featured_record_types[2]][0]); ?>
                     <?php endif; ?>
                 <?php endif; ?>
