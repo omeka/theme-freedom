@@ -1,6 +1,6 @@
 {
   "name": "freedom-classic-theme",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "An Omeka Classic Theme based on modular styling and mobile first approach, with a modern and accessible UX/UI.",
   "main": "gulpfile.js",
   "scripts": {
