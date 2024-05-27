@@ -169,7 +169,6 @@
             a {
                 color: $color__secondary-light;
                 text-transform: none;
-                text-decoration: none;
             
                 &:visited {
                     color: $color__secondary-light;
@@ -187,6 +186,11 @@
             }
             
         }
+    }
+
+    a {
+        color: $color__white;
+        text-decoration: underline;
     }
 
     hr {
