@@ -79,6 +79,7 @@
 <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass . ' ' . $header_layout_class)); ?>
     
     <a id="skipnav" href="#content"><?php echo __('Skip to main content'); ?></a>
+    <?php fire_plugin_hook('public_body', array('view'=>$this)); ?>
 
     <?php echo $this->partial('common/partials/main-header.php'); ?>
     <?php echo $this->partial('common/partials/banner.php'); ?>

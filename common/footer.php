@@ -115,6 +115,7 @@ foreach ( $socialNetworks as $social_network ) {
             </div>
         </div>
 
+        <?php fire_plugin_hook('public_footer', array('view' => $this)); ?>
     </footer>
 
     <?php echo $this->partial('common/partials/menu-drawer.php'); ?>
