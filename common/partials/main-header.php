@@ -1,4 +1,5 @@
 <header class="main-header">
+    <?php fire_plugin_hook('public_body', array('view'=>$this)); ?>
 
     <div class="main-header__top-bar container">
         <?php echo link_to_item_search('Advanced Search', ['class' => 'main-header__advanced-search']); ?>

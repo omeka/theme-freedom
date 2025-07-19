@@ -34,6 +34,7 @@ foreach ( $socialNetworks as $social_network ) {
     </div><!-- end content -->
 
     <footer class="main-footer">
+	    <?php fire_plugin_hook('public_footer', array('view' => $this)); ?>
 
         <!-- Footer Top -->
         <?php if ($footerLogo || $footerSiteInfo || $footerMenu || $footerContent ) : ?>
@@ -114,8 +115,6 @@ foreach ( $socialNetworks as $social_network ) {
                 </div>
             </div>
         </div>
-
-        <?php fire_plugin_hook('public_footer', array('view' => $this)); ?>
     </footer>
 
     <?php echo $this->partial('common/partials/menu-drawer.php'); ?>
