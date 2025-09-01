@@ -8,12 +8,23 @@
         color: $color__link;
     }
 
-    .local-contexts-notice {
+    .notice {
         align-items: flex-start;
         padding: 1rem;
+
+        @media (min-width: $xl) {
+            width: 50%;
+        }
     }
 
-    .language {
-        margin-left: 10px;
+    .notice-name {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+
+    .local-contexts-notice {
+        width: auto;
     }
 }
