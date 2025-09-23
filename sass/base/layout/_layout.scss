@@ -34,6 +34,12 @@ section {
         padding-top: 3rem;
         padding-bottom: 4rem;
     }
+
+    body.update-account & {
+        @media (min-width: $lg) {
+            max-width: 1160px;
+        }
+    }
 }
 
 @import "regions";
