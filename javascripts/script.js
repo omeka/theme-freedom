@@ -5,7 +5,7 @@ const freedomScripts = () => {
     const mainHeaderTopBar = document.querySelector('.main-header__top-bar');
     const mainHeaderMainBar = document.querySelector('.main-header__main-bar');
     const menuDrawer = document.getElementById('menu-drawer');
-    const userBar = document.getElementById('user-bar');
+    const userBar = document.getElementById('admin-bar');
 
     // Resize Events
 
