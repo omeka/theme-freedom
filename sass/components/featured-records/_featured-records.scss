@@ -12,13 +12,16 @@
         .resource {
             display: flex;
             border: 1px solid $color__hr;
-            flex: 1;
             gap: 30px;
             margin-bottom: 0;
             padding: 30px;
 
             @media(min-width: $sm) {
                 padding: 20px;
+            }
+
+            @media(min-width: $lg) {
+                flex: 1;
             }
 
             &__thumbnail {
