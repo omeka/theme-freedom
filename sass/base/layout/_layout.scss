@@ -29,6 +29,9 @@ section {
 #main-content {
     padding-top: 2rem;
     padding-bottom: 3rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
 
     @media (min-width: $lg) {
         padding-top: 3rem;
