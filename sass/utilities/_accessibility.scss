@@ -1,3 +1,7 @@
+#main-content:focus {
+    outline: none;
+}
+
 #skipnav {
     position: fixed;
     top: $font__base-line-height;

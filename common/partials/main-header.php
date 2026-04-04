@@ -11,7 +11,7 @@
 
     <div class="main-header__main-bar container">
 
-        <div class="main-header__site-title">
+        <h1 class="main-header__site-title site-title">
 
             <?php if (get_theme_option('Logo')) : ?>
                 <?php $site_logo = theme_logo(); ?>
@@ -21,18 +21,24 @@
 
             <?php echo link_to_home_page($site_logo); ?>
 
-        </div>
+        </h1>
 
         <nav class="main-navigation">
             <div class="main-navigation__container">
                 <?php echo public_nav_main(); ?>
             </div>
-            <div class="main-navigation__toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button
+				 class="main-navigation__toggle"
+				 aria-expanded="false"
+				 aria-controls="menu-drawer">
+				<span class="sr-only"><?php echo $this->translate('Open menu'); ?></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+				<span aria-hidden="true"></span>
+			</button>
         </nav>
+
+        <?php echo $this->partial('common/partials/menu-drawer.php'); ?>
     </div>
 
 </header>

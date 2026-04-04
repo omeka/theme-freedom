@@ -31,6 +31,8 @@
     $bannerDescription = get_theme_option('banner_description');
     $bannerHeightProperty = $bannerHeading || $bannerDescription ? 'min-height' : 'height';
     $primaryColor = get_theme_option('primary_color') ?? '#e77f11';
+    $secondaryColor = get_theme_option('secondary_color') ?? '#394f68';
+    $accentColor = get_theme_option('accent_color') ?? '#394f68';
     ?>
 
     <!-- Plugin Stuff -->
@@ -49,10 +51,16 @@
         :root {
             --primary: ' . $primaryColor . ';
             --primary-dark: ' . freedom_shade_color($primaryColor, -10) . ';
+            --primary-contrast: ' . freedom_contrast_color($primaryColor, ['#fff', '#333']) . ';
+            --secondary: ' . $secondaryColor . ';
+            --secondary-dark: ' . freedom_shade_color($secondaryColor, -10) . ';
+            --secondary-contrast: ' . freedom_contrast_color($secondaryColor, ['#fff', '#333']) . ';
+            --accent: ' . $accentColor . ';
+            --accent-dark: ' . freedom_shade_color($accentColor, -10) . ';
         }'
     );
 
-    if($bannerHeightMobile) {
+    if ($bannerHeightMobile) {
         queue_css_string(
             '
             @media screen and (max-width:768px) {
@@ -78,10 +86,10 @@
 </head>
 <?php echo body_tag(array('id' => @$bodyid, 'class' => @$bodyclass . ' ' . $header_layout_class)); ?>
     
-    <a id="skipnav" href="#content"><?php echo __('Skip to main content'); ?></a>
+    <a id="skipnav" href="#main-content"><?php echo __('Skip to main content'); ?></a>
 
     <?php echo $this->partial('common/partials/main-header.php'); ?>
     <?php echo $this->partial('common/partials/banner.php'); ?>
 
-    <div id="main-content" class="container" role="main">
+    <div id="main-content" class="container" role="main" tabindex="-1">
     <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>
