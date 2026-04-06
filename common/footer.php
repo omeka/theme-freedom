@@ -117,7 +117,7 @@ foreach ( $socialNetworks as $social_network ) {
         </div>
     </footer>
 
-    <script type="text/javascript">
+    <script>
         jQuery(document).ready(function(){
             Omeka.skipNav();
         });
