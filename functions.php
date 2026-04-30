@@ -419,13 +419,22 @@ function freedom_recent_records($type, $count = 4)
 }
 
 /**
- * Picks the best contrasting color from a list of colors for a given color.
+ * Returns the most appropriate contrasting color for a given base color.
  *
- * @param string $baseColor The base color in hex format (e.g., "#ffffff").
- * @param array $colorList An array of colors in hex format to choose from.
- * @return string The hex color code of the best contrasting color.
+ * Colors in $colorList are evaluated in order. The first color that meets
+ * $minRatio is returned immediately, so list order encodes preference.
+ * If no color meets $minRatio, the highest-contrast color is returned as
+ * a fallback.
+ *
+ * Contrast is calculated per the WCAG relative luminance formula. WCAG AA
+ * requires 4.5:1 for normal text and 3:1 for large text or UI components.
+ *
+ * @param string $baseColor The background color in hex format (e.g., "#ffffff").
+ * @param array $colorList Hex colors to choose from, in preference order.
+ * @param float $minRatio Minimum WCAG contrast ratio. Default 4.5 (AA normal text).
+ * @return string The hex color code of the selected color.
  */
-function freedom_contrast_color(string $baseColor, array $colorList): string
+function freedom_contrast_color(string $baseColor, array $colorList, float $minRatio = 4.5): string
 {
     $baseRgb = hexToRgb($baseColor);
     $bestContrast = 0;
@@ -435,13 +444,17 @@ function freedom_contrast_color(string $baseColor, array $colorList): string
         $colorRgb = hexToRgb($color);
         $contrast = calculateContrast($baseRgb, $colorRgb);
 
+        if ($contrast >= $minRatio) {
+            return $color; // first preferred color that passes.
+        }
+
         if ($contrast > $bestContrast) {
             $bestContrast = $contrast;
             $bestColor = $color;
         }
     }
 
-    return $bestColor;
+    return $bestColor; // best available if none pass.
 }
 
 /**
@@ -493,7 +506,7 @@ function relativeLuminance(array $rgb): float
 {
     $rgb = array_map(function ($value) {
         $value = $value / 255;
-        return $value <= 0.03928 ? $value / 12.92 : pow(($value + 0.055) / 1.055, 2.4);
+        return $value <= 0.04045 ? $value / 12.92 : pow(($value + 0.055) / 1.055, 2.4);
     }, $rgb);
 
     return 0.2126 * $rgb['r'] + 0.7152 * $rgb['g'] + 0.0722 * $rgb['b'];

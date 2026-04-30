@@ -55,14 +55,16 @@
     @include button;
     background-color: $color__buttons;
     border: none;
-    color: $color__white;
+    color: $color__buttons-contrast;
     
     &:hover:not(.disabled) {
-        background-color: $color__primary-dark;
+        background-color: $color__buttons-dark;
+        color: $color__buttons-contrast;
     }
     
     &:focus {
         outline: 5px auto Highlight;
+        color: $color__buttons-contrast;
     }
     
     &:disabled,
@@ -73,7 +75,7 @@
     }
     
     &:visited {
-        color: $color__white;
+        color: $color__buttons-contrast;
     }
 }
 
@@ -85,7 +87,7 @@
     
     &:hover:not(.disabled) {
         background-color: $color__buttons;
-        color: $color__white;
+        color: $color__buttons-contrast;
     }
     
     &:focus {
