@@ -1,0 +1,52 @@
+body.login {
+    #content {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    form {
+        @include clearfix();
+        box-shadow: 0px 1px 6px rgba($color__black, 0.25);
+        padding: 20px 25px;
+
+        label,
+        fieldset .field .field-meta label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .inputs {
+            width: 100%;
+        }
+
+        fieldset {
+            margin-bottom: 0;
+        }
+
+        .field {
+            margin-bottom: 1rem;
+        }
+
+        .field:last-child {
+            display: flex;
+
+            .inputs {
+                order: -1;
+                width: auto;
+            }
+        }
+
+        fieldset,
+        .field {
+            flex: 1 1 100%;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        ul.error li {
+            padding: 0;
+        }
+    }
+}
