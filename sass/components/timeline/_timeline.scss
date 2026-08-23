@@ -1,11 +1,6 @@
 body.timelines {
 
     .tl-timeline {
-        .tl-slidenav-next:focus,
-        .tl-slidenav-previous:focus {
-            outline: none;
-        }
-
         @for $i from 1 through 6 {
             h#{$i} {
                 @include heading(h#{$i});

@@ -13,10 +13,6 @@
         color: $color__accent-dark;
     }
 
-    &:focus {
-        outline: thin dotted;
-    }
-
     &:hover,
     &:active {
         outline: 0;
