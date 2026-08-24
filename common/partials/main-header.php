@@ -11,7 +11,7 @@
 
     <div class="main-header__main-bar container">
 
-        <h1 class="main-header__site-title site-title">
+        <div id="site-title" class="main-header__site-title">
 
             <?php if (get_theme_option('Logo')) : ?>
                 <?php $site_logo = theme_logo(); ?>
@@ -21,7 +21,7 @@
 
             <?php echo link_to_home_page($site_logo); ?>
 
-        </h1>
+        </div>
 
         <nav class="main-navigation">
             <div class="main-navigation__container">
