@@ -96,7 +96,7 @@ foreach ( $socialNetworks as $social_network ) {
                     <div class="main-footer__social-network">
                         <?php foreach ( $socialNetworks as $social_network ) : ?>
                             <?php if ($social_network_url = get_theme_option("{$social_network}_url") ) : ?>
-                                <a href="<?php echo $social_network_url; ?>">
+                                <a href="<?php echo html_escape($social_network_url); ?>">
                                     <img src="<?php echo img("{$social_network}.svg"); ?>"
                                         alt="<?php echo html_escape($social_network); ?>">
                                 </a>
