@@ -34,7 +34,7 @@ if ($bannerHeading || $bannerDescription) {
 ?>
 
 <?php if ($banner) : ?>
-    <div class="<?php echo implode(' ', $class); ?>" style="<?php echo $bannerInlineStyles; ?>">
+    <div role="banner" class="<?php echo implode(' ', $class); ?>" style="<?php echo $bannerInlineStyles; ?>">
 
         <img
             src="<?php echo $banner; ?>"
