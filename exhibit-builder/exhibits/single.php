@@ -4,6 +4,7 @@
  */
 
 $isGrid = $isGrid ?? false;
+$headingLevel = $headingLevel ?? 2;
 $excludeTag = $excludeTag ?? '';
 $primary = $primary ?? false;
 $exhibitImage = record_image($exhibit, 'fullsize');
@@ -36,7 +37,7 @@ if ($primary) {
         <?php echo freedom_record_tags($exhibit, '', $excludeTag); ?>
         <!-- Metadata -->
         <div class="resource__meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h2 class="resource__heading"><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h2>
+            <h<?php echo $headingLevel; ?> class="resource__heading"><?php echo exhibit_builder_link_to_exhibit($exhibit); ?></h<?php echo $headingLevel; ?>>
             <?php if ($description) : ?>
                 <div class="description <?php echo $truncateDesc; ?>"><?php echo $description; ?></div>
             <?php endif; ?>

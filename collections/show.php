@@ -26,7 +26,7 @@ $totalItems = metadata('collection', 'total_items');
                 <?php if ($totalItems > 0) : ?>
                     <ul class="resources resource-list">
                         <?php foreach (loop('items') as $item): ?>
-                            <?php echo $this->partial('items/single.php', array('item' => $item, 'isGrid' => false)); ?>
+                            <?php echo $this->partial('items/single.php', array('item' => $item, 'isGrid' => false, 'headingLevel' => 3)); ?>
                         <?php endforeach; ?>
                     </ul>
                     <?php echo link_to_items_browse(__(plural('View item', 'View all %s items', $totalItems), $totalItems), array('collection' => metadata('collection', 'id')), array('class' => 'view-items-link')); ?>

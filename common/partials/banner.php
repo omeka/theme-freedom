@@ -44,7 +44,7 @@ if ($bannerHeading || $bannerDescription) {
 
         <div class="banner__content banner__content--<?php echo $bannerContentPosition; ?>">
             <?php if($bannerHeading) : ?>
-                <h2 class="banner__heading"><?php echo html_escape($bannerHeading); ?></h2>
+                <p class="banner__heading"><?php echo html_escape($bannerHeading); ?></p>
             <?php endif; ?>
             <?php if($bannerDescription) : ?>
                 <p class="banner__description"><?php echo html_escape($bannerDescription); ?></p>

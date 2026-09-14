@@ -4,6 +4,7 @@
  */
 
 $isGrid = $isGrid ?? false;
+$headingLevel = $headingLevel ?? 2;
 $excludeTag = $excludeTag ?? '';
 $primary = $primary ?? false;
 $primaryMedia = item_image('fullsize', array(), 0, $item);
@@ -37,7 +38,7 @@ if ($primary) {
         <?php echo freedom_record_tags($item, '', $excludeTag); ?>
         <!-- Metadata -->
         <div class="resource__meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h2 class="resource__heading"><?php echo link_to($item, 'show', $title); ?></h2>
+            <h<?php echo $headingLevel; ?> class="resource__heading"><?php echo link_to($item, 'show', $title); ?></h<?php echo $headingLevel; ?>>
             <?php if ($description) : ?>
                 <div class="description <?php echo $truncateDesc; ?>"><?php echo $description; ?></div>
             <?php endif; ?>

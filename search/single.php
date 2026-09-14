@@ -8,6 +8,7 @@ $recordType = $searchText['record_type'];
 set_current_record($recordType, $record);
 
 $isGrid = $isGrid ?? false;
+$headingLevel = $headingLevel ?? 2;
 $recordImage = record_image($recordType, 'square_thumbnail');
 $title = $searchText['title'] ? $searchText['title'] : '[Unknown]';
 $decoration = get_theme_option('image_decoration');
@@ -35,7 +36,7 @@ $class[] = strtolower($filter->filter($recordType));
         <?php echo freedom_record_tags($record); ?>
         <!-- Metadata -->
         <div class="resource__meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h2 class="resource__heading"><?php echo link_to($record, 'show', $title); ?></h2>
+            <h<?php echo $headingLevel; ?> class="resource__heading"><?php echo link_to($record, 'show', $title); ?></h<?php echo $headingLevel; ?>>
         </div>
     </div>
 </li>

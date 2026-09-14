@@ -4,6 +4,7 @@
  */
 
 $isGrid = $isGrid ?? false;
+$headingLevel = $headingLevel ?? 2;
 $excludeTag = $excludeTag ?? '';
 $primary = $primary ?? false;
 $collectionImage = record_image($collection, 'fullsize');
@@ -38,7 +39,7 @@ if ($primary) {
         <?php echo freedom_record_tags($collection, '', $excludeTag); ?>
         <!-- Metadata -->
         <div class="resource__meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
-            <h2 class="resource__heading"><?php echo link_to($collection, 'show', $title); ?></h2>
+            <h<?php echo $headingLevel; ?> class="resource__heading"><?php echo link_to($collection, 'show', $title); ?></h<?php echo $headingLevel; ?>>
             <?php if ($description) : ?>
                 <p class="description <?php echo $truncateDesc; ?>"><?php echo $description; ?></p>
             <?php endif; ?>
