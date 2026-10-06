@@ -3,6 +3,9 @@ $exhibitTitle = metadata('exhibit', 'title');
 $exhibitDescription = metadata('exhibit', 'description', array('no_escape' => true));
 $exhibitCredits = metadata('exhibit', 'credits');
 $pageTree = exhibit_builder_page_tree();
+$imageFile = $exhibit->getFile();
+$altText = ($imageFile && !empty($imageFile->alt_text)) ? $imageFile->alt_text : metadata('exhibit', 'title', array('no_escape' => true));
+$recordImage = record_image($exhibit, 'fullsize', ['alt' => $altText]);
 
 echo head(array('title' => $exhibitTitle, 'bodyclass'=>'exhibits summary'));
 ?>
@@ -12,11 +15,13 @@ echo head(array('title' => $exhibitTitle, 'bodyclass'=>'exhibits summary'));
 <?php echo exhibit_builder_page_nav(); ?>
 
 <div class="regions-container">
+    <?php if ($recordImage): ?>
     <div class="sidebar-region sidebar-region--left">
         <div class="metadata">
-            <?php echo record_image($exhibit, 'fullsize'); ?>
+            <?php echo $recordImage; ?>
         </div>
     </div>
+    <?php endif; ?>
 
     <div class="main-region">
         <div class="metadata">

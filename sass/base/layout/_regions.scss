@@ -26,13 +26,19 @@
             width: 27%;
         }
 
+        // Vertical divider between columns; hidden while regions are stacked.
         &::after {
             content: "";
+            display: none;
             position: absolute;
             width: 1px;
             height: calc(100% + 100px);
             background-color: $color__hr;
             top: -50px;
+
+            @media (min-width: $md) {
+                display: block;
+            }
         }
 
         &--left {
@@ -68,6 +74,14 @@
 
             @media (min-width: $xl) {
                 width: 27% !important;
+            }
+
+            &::after {
+                display: none;
+
+                @media (min-width: $xl) {
+                    display: block;
+                }
             }
         }
     }

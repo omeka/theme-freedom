@@ -1,6 +1,9 @@
 <?php
 $collectionTitle = metadata('collection', 'display_title');
 $totalItems = metadata('collection', 'total_items');
+$imageFile = $collection->getFile();
+$altText = ($imageFile && !empty($imageFile->alt_text)) ? $imageFile->alt_text : metadata('collection', 'display_title', array('no_escape' => true));
+$recordImage = record_image($collection, 'fullsize', ['alt' => $altText]);
 ?>
 
 <?php echo head(array('title' => $collectionTitle, 'bodyclass' => 'collections show')); ?>
@@ -9,11 +12,13 @@ $totalItems = metadata('collection', 'total_items');
 <h1><?php echo metadata('collection', 'rich_title', array('no_escape' => true)); ?></h1>
 
 <div class="regions-container">
+    <?php if ($recordImage): ?>
     <div class="sidebar-region sidebar-region--left">
         <div class="metadata">
-            <?php echo record_image($collection, 'fullsize'); ?>
+            <?php echo $recordImage; ?>
         </div>
     </div>
+    <?php endif; ?>
 
     <div class="main-region">
         <div class="metadata">
