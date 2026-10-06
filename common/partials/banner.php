@@ -34,7 +34,7 @@ if ($bannerHeading || $bannerDescription) {
 ?>
 
 <?php if ($banner) : ?>
-    <div role="banner" class="<?php echo implode(' ', $class); ?>" style="<?php echo $bannerInlineStyles; ?>">
+    <aside class="<?php echo implode(' ', $class); ?>"<?php echo ($bannerHeading) ? ' aria-labelledby="banner-heading"' : ''; ?> style="<?php echo $bannerInlineStyles; ?>">
 
         <img
             src="<?php echo $banner; ?>"
@@ -44,11 +44,11 @@ if ($bannerHeading || $bannerDescription) {
 
         <div class="banner__content banner__content--<?php echo $bannerContentPosition; ?>">
             <?php if($bannerHeading) : ?>
-                <p class="banner__heading"><?php echo html_escape($bannerHeading); ?></p>
+                <h2 id="banner-heading" class="banner__heading"><?php echo html_escape($bannerHeading); ?></h2>
             <?php endif; ?>
             <?php if($bannerDescription) : ?>
                 <p class="banner__description"><?php echo html_escape($bannerDescription); ?></p>
             <?php endif; ?>
         </div>
-    </div>
+    </aside>
 <?php endif; ?>
