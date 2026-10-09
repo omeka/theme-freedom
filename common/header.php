@@ -33,6 +33,7 @@
     $primaryColor = get_theme_option('primary_color') ?? '#e77f11';
     $secondaryColor = get_theme_option('secondary_color') ?? '#394f68';
     $accentColor = get_theme_option('accent_color') ?? '#394f68';
+    $linkColor = get_theme_option('link_color') ?? '#121821';
     ?>
 
     <!-- Plugin Stuff -->
@@ -57,6 +58,7 @@
             --secondary-contrast: ' . freedom_contrast_color($secondaryColor, ['#333', '#fff', '#000']) . ';
             --accent: ' . $accentColor . ';
             --accent-dark: ' . freedom_shade_color($accentColor, -10) . ';
+            --link: ' . $linkColor . ';
         }'
     );
 
