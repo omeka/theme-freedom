@@ -30,10 +30,10 @@
     $bannerHeading = get_theme_option('banner_heading');
     $bannerDescription = get_theme_option('banner_description');
     $bannerHeightProperty = $bannerHeading || $bannerDescription ? 'min-height' : 'height';
-    $primaryColor = get_theme_option('primary_color') ?? '#e77f11';
-    $secondaryColor = get_theme_option('secondary_color') ?? '#394f68';
-    $accentColor = get_theme_option('accent_color') ?? '#394f68';
-    $linkColor = get_theme_option('link_color') ?? '#031831';
+    $primaryColor = get_theme_option('primary_color') ?: '#cb4b06';
+    $secondaryColor = get_theme_option('secondary_color') ?: '#394f68';
+    $accentColor = get_theme_option('accent_color') ?: '#394f68';
+    $linkColor = get_theme_option('link_color') ?: '#031831';
     ?>
 
     <!-- Plugin Stuff -->
