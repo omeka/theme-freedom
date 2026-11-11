@@ -1,0 +1,15 @@
+// Where subset ranges overlap, browsers try the last rule first. Math and
+// Symbols come first so they only serve characters no script subset covers;
+// otherwise Greek text would also download the Math file.
+
+/* Open Sans
+--------------------------------------------- */
+$open-sans-subsets: math symbols cyrillic-ext cyrillic greek-ext greek hebrew vietnamese latin-ext latin;
+@include font-face("Open Sans", "open-sans", 300 400 500 600 700, $open-sans-subsets);
+@include font-face("Open Sans", "open-sans-italic", 300 400 500 600 700, $open-sans-subsets, italic);
+
+/* Noto Serif
+--------------------------------------------- */
+$noto-serif-subsets: math cyrillic-ext cyrillic greek-ext greek vietnamese latin-ext latin;
+@include font-face("Noto Serif", "noto-serif", 400 700, $noto-serif-subsets);
+@include font-face("Noto Serif", "noto-serif-italic", 400 700, $noto-serif-subsets, italic);
