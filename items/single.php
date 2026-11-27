@@ -8,7 +8,7 @@ $headingLevel = $headingLevel ?? 2;
 $excludeTag = $excludeTag ?? '';
 $primary = $primary ?? false;
 $imageFile = $item->getFile(0);
-$altText = ($imageFile && !empty($imageFile->alt_text)) ? $imageFile->alt_text : metadata($item, 'display_title', array('no_escape' => true));
+$altText = ($imageFile ? $imageFile->getAltText() : '') ?: metadata($item, 'display_title', array('no_escape' => true));
 $primaryMedia = item_image('fullsize', ['alt' => $altText], 0, $item);
 $title = metadata($item, 'rich_title', array('no_escape' => true));
 $description = metadata($item, array('Dublin Core', 'Description'));
@@ -31,7 +31,7 @@ if ($primary) {
     <!-- Thumbnail -->
     <?php if ($primaryMedia) : ?>
         <div class="resource__thumbnail <?php echo $decorationClass; ?>">
-            <?php echo link_to($item, 'show', $primaryMedia, array('class' => 'thumbnail')); ?>
+            <?php echo link_to($item, 'show', $primaryMedia, array('class' => 'thumbnail', 'tabindex' => '-1', 'aria-hidden' => 'true')); ?>
         </div>
     <?php endif; ?>
 
